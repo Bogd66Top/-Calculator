@@ -3,7 +3,7 @@ import keyboard
 from PIL import Image, ImageTk
 
 ok = [False, False]
-with open("config.txt", "r") as f:
+with open("resources\config.txt", "r") as f:
     save_config = f.readlines()
     for item_config_ in save_config:
         item_config = item_config_.split(":")
@@ -23,13 +23,13 @@ w.title("Калькулятор")
 w.geometry(f"{round(192*scale_x)}x{round(192*scale_y)}")
 w.resizable(False, False)
 
-icon_photo = ImageTk.PhotoImage(Image.open('icon\icon.png'))
-icon_settings = ImageTk.PhotoImage(Image.open('icon\icon_settings.png'))
+icon_photo = ImageTk.PhotoImage(Image.open('resources\icon\icon.png'))
+icon_settings = ImageTk.PhotoImage(Image.open('resources\icon\icon_settings.png'))
 
 w.iconphoto(False, icon_photo)
 
 save_data = None
-with open("data.txt", "r") as f:
+with open("resources\data.txt", "r") as f:
     save_data = f.readline()
 
 
@@ -156,7 +156,7 @@ class Calculator:
         self.E_InpOut.delete(0, "end")
         self.E_InpOut.insert(0, "")
     def Save(self):
-        with open("data.txt", "w") as f:
+        with open("resources\data.txt", "w") as f:
             f.truncate()
             f.write(self.E_InpOut.get())
 
@@ -225,7 +225,7 @@ class Settings:
         self.UnLoad()
         CL.Load()
     def Save(self):
-        with open("config.txt", "w") as f:
+        with open("resources\config.txt", "w") as f:
             f.truncate()
             f.write(f"SizeX:{round(scale_x)}\n")
             f.write(f"SizeY:{round(scale_y)}")
